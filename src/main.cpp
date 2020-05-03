@@ -26,6 +26,7 @@ void setup()
   boolean free = false;
   boolean hasName = false;
 
+  Serial.println("Please input SSID: ");
   bluetooth.println("Please input SSID: ");
 
   do
@@ -35,7 +36,7 @@ void setup()
     {
       dadoBluetooth = bluetooth.read();
       char c = dadoBluetooth;
-
+      Serial.print(c);
       if (c == '\n')
       {
         if (!hasName)
@@ -44,24 +45,25 @@ void setup()
           bluetooth.println(ssid);
           hasName = true;
           bluetooth.println("Please input password");
+          Serial.println(ssid);
+          Serial.println("\n");
         }
         else
         {
           bluetooth.println(password);
           free = true;
           bluetooth.println("Connecting");
+          Serial.println(password);
         }
+      }
+
+      if (!hasName)
+      {
+        ssid += c;
       }
       else
       {
-        if (!hasName)
-        {
-          ssid += c;
-        }
-        else
-        {
-          password += c;
-        }
+        password += c;
       }
     }
 
