@@ -27,7 +27,7 @@ public:
         return abs(last - actual) > minDiff;
     }
 
-    void wiffiUpdate()
+    void GiroUpdate()
     {
         update();
         updateAcel();
